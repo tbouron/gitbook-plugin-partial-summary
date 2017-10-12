@@ -1,0 +1,14 @@
+{
+  "name": "gitbook-plugin-partial-summary",
+  "version": "1.0.0",
+  "description": "Adds a partial summary, relative to the current page",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "gitbook": ">3.0.0"
+  },
+  "author": "Thomas Bouron <tbouron@gmail.com> (https://github.com/tbouron/)",
+  "license": "Apache-2.0"
+}
