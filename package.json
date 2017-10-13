@@ -10,5 +10,26 @@
     "gitbook": ">3.0.0"
   },
   "author": "Thomas Bouron <tbouron@gmail.com> (https://github.com/tbouron/)",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "gitbook": {
+    "properties": {
+      "depth": {
+        "type": "integer",
+        "title": "Partial summary depth",
+        "description": "Maximum depth to display in the partial summary. -1 means unlimited (default). 0 means disabled",
+        "default": -1
+      }
+    },
+    "page": {
+      "title": "Partial summary configuration for this page",
+      "properties": {
+        "partial-summary-depth": {
+          "type": "integer",
+          "title": "Partial summary depth",
+          "description": "Maximum depth to display in the partial summary. -1 means unlimited (default). 0 means disabled",
+          "default": -1
+        }
+      }
+    }
+  }
 }
