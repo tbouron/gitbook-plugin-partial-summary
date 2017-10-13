@@ -1,26 +1,21 @@
 module.exports = {
     hooks: {
-        'page:before': page => {
-            return this.getBook().getSummary().getByPath(page.path).then(article => {
-                page.content += getPartialSummary(article);
+        'page:before': function(page) {
+            let currentArticle = this.summary.getArticleByPath(page.path);
+
+            if (!currentArticle) {
                 return page;
-            }).catch(() => {
-                return page;
-            });
+            }
 
-            function getPartialSummary(currentArticle) {
-                if (currentArticle.articles.length === 0) {
-                    return '';
-                }
+            page.content += "\n\n" + getPartialSummary(currentArticle).join("\n");
+            return page;
 
-                let summary = '<ul>';
-                summary += currentArticle.articles.reduce((acc, article) => {
-                    let subSummary = getPartialSummary(article);
-                    acc.push(`<li><a href="${article.getUrl() || article.getPath()}">${article.title}</a>${subSummary}</li>`)
-                }, []).join("\n");
-                summary += '</ul>';
-
-                return summary;
+            function getPartialSummary(currentArticle, level = 0) {
+                let offset = '  ';
+                return currentArticle.articles.reduce((acc, article) => {
+                    acc.push(`${offset.repeat(level)}* [${article.title}](${article.url || '/' + article.path})`);
+                    return acc.concat(getPartialSummary(article, level + 1));
+                }, []);
             }
         }
     },
